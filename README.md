@@ -9,6 +9,6 @@
 	2.安装依赖 pip install -r requirements.txt
 	3.运行程序python search.py
 ##有待优化项
-	1.极少数的txt乱码问题
+	1.极少数的txt乱码问题(已解决)
 	2.数据保存问题(使用MySql来存储数据)
 	3.文件保存时浪费cpu资源(优化代码)
