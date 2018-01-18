@@ -2,7 +2,7 @@
 # @Author: wang
 # @Date:   2018-01-17 10:15:25
 # @Last Modified by:   wangfpp
-# @Last Modified time: 2018-01-18 20:04:55
+# @Last Modified time: 2018-01-18 20:24:58
 import requests
 from bs4 import BeautifulSoup
 import os
@@ -28,7 +28,6 @@ class ClassName(object):
         self.filter_a_href()#对获取的a标签进行过滤
         for url in self.alink:
             file_name = (re.sub(self.base_url, '', os.path.splitext(url)[0], 0) + "{0}").replace('/','_').format('.txt')
-            print self.is_have_file(file_name),file_name
             if self.is_have_file(file_name):
                 print ('正在提取:{0}的文字').format(url)
                 self.get_text(url)
