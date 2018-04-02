@@ -40,7 +40,11 @@ class ClassName(object):
                 self.classify_a.append(a.get('href')) 
             self.filter_a_href(self.classify_a) 
         else:
+<<<<<<< HEAD
             logger.error('cannot save license tmp file')
+=======
+            pass
+>>>>>>> 3c01d9fa24ce2b4185d8b7ea2705ed0b8bbd7efc
         for i in self.classify_a:
             self.get_href(i)
     def get_href(self,url):#获取 网页的a标签的 href  过滤后 进行解析其新闻文本
