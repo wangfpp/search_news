@@ -11,7 +11,8 @@
 	3.mkdir txt
 	4.运行程序python search_news.py
 # 有待优化项
-	1.数据保存(Sqlite)
+	1.数据保存(Sqlite) 
+		- 已经在shownews 项目中保存为Mysql
 	2.函数内部优化
 	3.。。。。。
-	
+
