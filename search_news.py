@@ -2,7 +2,7 @@
 # @Author: wang
 # @Date:   2018-01-17 10:15:25
 # @Last Modified by:   wangfpp
-# @Last Modified time: 2018-04-02 17:19:15
+# @Last Modified time: 2018-05-24 16:47:07
 import requests#接口请求模块
 from bs4 import BeautifulSoup#网页解析模块
 import logging
@@ -74,7 +74,7 @@ class ClassName(object):
     def get_text (self,url):#获取新闻网页的新闻内容
         file_name = (re.sub(self.base_url, '', os.path.splitext(url)[0], 0) + "{0}").replace('/','_').format('.txt')
         try:
-            req = requests.get(url,timeout=10)
+            req = requests.get(url,timeout=30)
             req.encoding = 'GB2312'
             html = req.text
             soup = BeautifulSoup(html, 'html.parser')
@@ -119,7 +119,8 @@ if __name__ == '__main__':
     #logging.basicConfig(level=logging.DEBUG)
     base_url = 'http://www.chinanews.com/'
     a = ClassName(base_url,'//media/nas/audios')
-    a.classify_news(base_url)
+    #a.classify_news(base_url)
+    a.get_text('http://www.chinanews.com/gn/2018/05-22/8519390.shtml')
     logger.info('进行搜索')
         
   			

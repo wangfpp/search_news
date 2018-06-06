@@ -1,0 +1,6 @@
+2018-05-24 16:46:21,746 - __main__ - ERROR - get text error:http://www.chinanews.com/gn/2018/05-22/8519390.shtml
+2018-05-24 16:46:21,747 - __main__ - INFO - 进行搜索
+2018-05-24 16:46:45,607 - __main__ - ERROR - get text error:http://www.chinanews.com/gn/2018/05-22/8519390.shtml
+2018-05-24 16:46:45,607 - __main__ - INFO - 进行搜索
+2018-05-24 16:47:09,868 - __main__ - ERROR - get text error:http://www.chinanews.com/gn/2018/05-22/8519390.shtml
+2018-05-24 16:47:09,868 - __main__ - INFO - 进行搜索
