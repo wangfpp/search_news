@@ -2,7 +2,7 @@
 # @Author: wang
 # @Date:   2018-01-17 10:15:25
 # @Last Modified by:   wangfpp
-# @Last Modified time: 2018-04-02 17:19:15
+# @Last Modified time: 2018-06-12 09:18:01
 import requests#接口请求模块
 from bs4 import BeautifulSoup#网页解析模块
 import logging
@@ -15,11 +15,12 @@ if comm_path not in sys.path:
     sys.path.append(comm_path)
 logger = logging.getLogger(__name__)
 logger.setLevel(level = logging.INFO)
-handler = logging.FileHandler("log.txt")
+handler = logging.FileHandler("{}/log.txt".format(curr_path))
 handler.setLevel(logging.INFO)
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 handler.setFormatter(formatter)
 logger.addHandler(handler)
+total = 0
 class ClassName(object):
     """获取base_url http://www.chinanews.com/的新闻材料"""
     def __init__(self,base_url,path):#Class类初始化函数  base_url为解读的新闻网页的主页
@@ -65,7 +66,7 @@ class ClassName(object):
                 file_name = (re.sub(self.base_url, '', os.path.splitext(uri)[0], 0) + "{0}").replace('/','_').format('.txt')
                 if self.is_have_file(file_name):
                     if re.match('.*([a-zA-Z]/[0-9]{4}/[0-9]{2}-[0-9]{2}/[0-9]{7}.shtml$)',uri) != None:
-                        print ('正在提取:{0}的文字').format(uri)
+                        #print ('正在提取:{0}的文字').format(uri)
                         self.get_text(uri)
         except:
             logger.error('prase :{} error'.format(url))
@@ -87,11 +88,12 @@ class ClassName(object):
                 for txt_contene in item.contents:
                     if txt_contene.string and len(txt_contene.string) > 5:
                         #print url,txt_contene.string
-                        print ('保存新闻内容到:{0}').format(file_name)
+                        #print ('保存新闻内容到:{0}').format(file_name)
                         self.save_text(txt_contene.string.encode('utf-8'),file_name)
+            total += 1
         except:
             logger.error('get text error:{}'.format(url))
-            print ('\033[0;31m 网页获取错误\033[0m {0}').format(url)
+            #print ('\033[0;31m 网页获取错误\033[0m {0}').format(url)
 
     def save_text(self,txt,filename):#保存新闻内容到txt文件中
         f = open(self.path + '/title_audiotxt/' + filename, 'a')
@@ -123,7 +125,7 @@ if __name__ == '__main__':
     a = ClassName(base_url,'//media/nas/audios')
     a.classify_news(base_url)
     newTime = time.time()
-    logger.info('进行搜索,搜索用时:{}s'.format(newTime-oldTime))
+    logger.info('进行搜索,搜索用时:{}s,保存新闻{}个'.format(newTime-oldTime,total))
         
   			
   		
