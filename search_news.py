@@ -2,7 +2,7 @@
 # @Author: wang
 # @Date:   2018-01-17 10:15:25
 # @Last Modified by:   wangfpp
-# @Last Modified time: 2018-06-12 09:18:01
+# @Last Modified time: 2018-06-14 14:09:09
 import requests#接口请求模块
 from bs4 import BeautifulSoup#网页解析模块
 import logging
@@ -39,6 +39,7 @@ class ClassName(object):
             'Connection': 'keep-alive',
         }
         req = requests.get(url, headers = Header)
+
         if req.status_code == 200:
             req_content = req.content
             soup = BeautifulSoup(req_content, 'html.parser')
@@ -54,7 +55,6 @@ class ClassName(object):
         try:
             self.alink = alink = []
             req = requests.get(url)
-            print ('\033[0;32;47m 解析正常进行\033[0m')
             req_content = req.content
             soup = BeautifulSoup(req_content, 'html.parser')
             a_tag = soup.find_all('a')
@@ -69,14 +69,14 @@ class ClassName(object):
                         #print ('正在提取:{0}的文字').format(uri)
                         self.get_text(uri)
         except:
-            logger.error('prase :{} error'.format(url))
-            #print ('\033[7;31;47m 网页解析出错 \033[0m')#https://www.cnblogs.com/ping-y/p/5897018.html
-            #print color ('\033[显示方式;字体颜色;背景颜色m　print text　\033[0m')
+            logger.error('prase label url :{} error'.format(url))
+            print ('\033[7;31;47m 网页解析出错 \033[0m')#https://www.cnblogs.com/ping-y/p/5897018.html
+            print color ('\033[显示方式;字体颜色;背景颜色m　print text　\033[0m')
 
     def get_text (self,url):#获取新闻网页的新闻内容
         file_name = (re.sub(self.base_url, '', os.path.splitext(url)[0], 0) + "{0}").replace('/','_').format('.txt')
         try:
-            req = requests.get(url,timeout=10)
+            req = requests.get(url)
             req.encoding = 'GB2312'
             html = req.text
             soup = BeautifulSoup(html, 'html.parser')
@@ -87,13 +87,13 @@ class ClassName(object):
             for item in content:
                 for txt_contene in item.contents:
                     if txt_contene.string and len(txt_contene.string) > 5:
-                        #print url,txt_contene.string
-                        #print ('保存新闻内容到:{0}').format(file_name)
-                        self.save_text(txt_contene.string.encode('utf-8'),file_name)
-            total += 1
+                        if txt_contene.string is not None:
+                            self.save_text(txt_contene.string.strip().encode('utf-8'),file_name)
+                    # print txt_contene.string,('保存新闻内容到:{0}').format(file_name)
+                    # self.save_text(txt_contene.string,file_name)
         except:
             logger.error('get text error:{}'.format(url))
-            #print ('\033[0;31m 网页获取错误\033[0m {0}').format(url)
+            print ('\033[0;31m 网页获取错误\033[0m {0}').format(url)
 
     def save_text(self,txt,filename):#保存新闻内容到txt文件中
         f = open(self.path + '/title_audiotxt/' + filename, 'a')
