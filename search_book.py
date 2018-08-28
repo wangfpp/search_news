@@ -2,13 +2,14 @@
 # @Author: wangfpp
 # @Date:   2018-08-27 17:31:11
 # @Last Modified by:   wangfpp
-# @Last Modified time: 2018-08-28 11:14:01
+# @Last Modified time: 2018-08-28 11:51:28
 import requests#接口请求模块
 from bs4 import BeautifulSoup#网页解析模块
 import logging
 import time
 import os,sys
 import re
+sys.setrecursionlimit(1000000)
 curr_path = os.path.dirname(os.path.abspath(__file__))
 comm_path = os.path.dirname(curr_path)
 if comm_path not in sys.path:
