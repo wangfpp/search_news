@@ -2,7 +2,7 @@
 # @Author: wangfpp
 # @Date:   2018-08-27 17:31:11
 # @Last Modified by:   wangfpp
-# @Last Modified time: 2018-08-28 11:51:28
+# @Last Modified time: 2018-08-28 13:43:06
 import requests#接口请求模块
 from bs4 import BeautifulSoup#网页解析模块
 import logging
@@ -53,9 +53,10 @@ class searchBook(object):
 				soup = BeautifulSoup(html, 'html.parser')
 				pagination = soup.find_all('a', id = 'readBtn')
 				chapter =  'https:' + pagination[0].get('href')
-				self.oneChapter.append(chapter)
-		for link in self.oneChapter:
-			self.getText(link)
+				#self.oneChapter.append(chapter)
+				self.getText(chapter)
+		# for link in self.oneChapter:
+			
 	def getText(self, link):
 		req = requests.get(link)
 		index =  link.find('chapter')
@@ -84,6 +85,6 @@ class searchBook(object):
 		else:
 			return True
 if __name__ == '__main__':
-	a = searchBook('https://www.qidian.com/all?orderId=&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0&page=', 2, '/media/nas/speech_datas/booktext/')
+	a = searchBook('https://www.qidian.com/all?orderId=&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0&page=', 50027, '/media/nas/speech_datas/booktext/')
 	a.findBook()
 		
