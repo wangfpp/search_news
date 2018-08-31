@@ -5,6 +5,8 @@
 
 # 使用
 	1.安装Python python2.7
+	2.依赖Mysql
+	3.bs4
 	4.运行程序python search_book.py
 # 说明
 	1.每个小说为一个文件夹 
@@ -14,4 +16,8 @@
 # 有待优化项
 	1.增加项目日志的输出
 	2.优化代码
+
+# 遇到的问题
+	在Mysql INSERT TABLE (some) VALUES (?) 插入数据时要执行一次db.commit()
+	不然不能成功插入数据
 
