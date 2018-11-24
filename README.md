@@ -4,10 +4,11 @@
 	1.起点中文网的小说获取增加样本
 
 # 使用
-	1.安装Python python2.7
-	2.依赖Mysql
-	3.bs4
-	4.运行程序python search_book.py
+	1.安装Python3
+	2.依赖Mysql 存储搜集的文本
+	3.requests-html 可以异步解析HTML
+	4.pymysql 连接数据库
+	4.运行程序python3 book.py
 # 说明
 	1.每个小说为一个文件夹 
 	2.文件夹下以每一章节命名的txt文件
@@ -18,6 +19,10 @@
 	2.优化代码
 
 # 遇到的问题
-	在Mysql INSERT TABLE (some) VALUES (?) 插入数据时要执行一次db.commit()
+- 在Mysql INSERT TABLE (some) VALUES (?) 插入数据时要执行一次db.commit()
 	不然不能成功插入数据
+- 局域网访问数据库的配置
+- 数据库修改默认的字符集类型
+- 数据库存储缓存大小的设置
+- 数据库防攻击的了解
 
