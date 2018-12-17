@@ -2,7 +2,7 @@
 # @Author: wang
 # @Date:   2018-01-17 10:15:25
 # @Last Modified by:   wangfpp
-# @Last Modified time: 2018-01-18 20:04:55
+# @Last Modified time: 2018-12-17 10:28:40
 import requests
 from bs4 import BeautifulSoup
 import os
@@ -12,7 +12,7 @@ class ClassName(object):
     """获取base_url http://www.chinanews.com/的新闻材料"""
     def __init__(self,base_url):#Class类初始化函数  base_url为解读的新闻网页的主页
         self.base_url = base_url
-        pass
+        
     def get_href(self):#获取 网页的a标签的 href  过滤后 进行解析其新闻文本
         # try:
         self.alink = alink = []
